@@ -30,10 +30,10 @@ public class UserController {
 	
 	//will send user id and password from jsp to controller
 	//it should validate the credentials
-	//it should return username ---- valid credentials
+	//it should return user name ---- valid credentials
 	//it should return error message ----invalid credentials
 	
-	@GetMapping("validate")
+	@PostMapping("validate")
 	public ModelAndView validate(@RequestParam("uname") String username, @RequestParam("psw") String password)
 	
 	{
@@ -51,7 +51,7 @@ public class UserController {
 			//valid credentials.
 			//mv.addObject("welcomeMessage", "Welcome Mr./Ms " + user.getName());
 			httpSession.setAttribute("welcomeMessage", "Welcome Mr./Ms " + user.getName());
-			
+			httpSession.setAttribute("loggedInUserID", user.getEmailID());
 			if(user.getRole()=='A')
 			{
 				httpSession.setAttribute("isAdmin", true);
@@ -64,3 +64,5 @@ public class UserController {
 	}
 
 }
+
+

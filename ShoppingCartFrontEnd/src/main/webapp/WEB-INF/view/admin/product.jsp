@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,21 +9,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${productsSuccessMessage} ${productsErrorMessage}
+	${productSuccessMessage} ${productErrorMessage}
+	${uploadMessage}
 	<!-- create 3 text fields -->
-	<form action="products/save/" method="post">
+	<form action="product/save/" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>ID</td>
-
-				<td><input type="text" name='id' value="${selectedProducts.id}"></td>
+				<!--  write in the if condition -->
+				<td><input type="text" name='id' value="${selectedProduct.id}"></td>
 
 			</tr>
 
 			<td>Name</td>
 
 			<td><input type="text" name='name'
-				value="${selectedProducts.name}"></td>
+				value="${selectedProduct.name}"></td>
 
 			</tr>
 
@@ -32,40 +32,73 @@
 				<td>Description</td>
 
 				<td><input type="text" name='description'
-					value="${selectedProducts.description}"></td>
+					value="${selectedProduct.description}"></td>
 			</tr>
-
 			<tr>
 				<td>Price</td>
-
-				<td><input type="text" name='price'
-					value="${selectedProducts.price}"></td>
+				<td><input type="text" name="price"
+					value="${selectedProduct.price}">
 			</tr>
 
+
 			<tr>
-				<td>Category</td>
-				<td><select name = "categoryID">
-				<c:forEach var= "category" items="${categories}"> 
-						<option value="${category.id}"> ${category.name} </option>
-				</c:forEach>		
+				<td>Select Category</td>
+				<td><select name="categoryID">
+						<c:forEach var="category" items="${categories}">
+
+							<option value="${category.id}" >${category.name}</option>
+
+						</c:forEach>
+
+
+
 
 				</select></td>
+
+
+			</tr>
+			
+			
+			<tr>
+			<td>
+			Product Image : <input type="file" name ="file">
+			</td>
+			
 			</tr>
 
 
+<tr>
+				<td>Select Supplier</td>
+				<td><select name="supplierID">
+						<c:forEach var="supplier" items="${suppliers}">
+
+							<option value="${supplier.id}" >${supplier.name}</option>
+
+						</c:forEach>
 
 
-			<tr>
-				<td>Supplier</td>
-				<td><select name = "supplierID">
-						<option value="Sup001">SVG Electronics</option>
-						<option value="Sup002">MG Books</option>
-						<option value="Sup003">Sangeetha Mobile</option>
+
 
 				</select></td>
+
+
 			</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			<tr>
-				<td><input type="submit" value='create products'></td>
+				<td><input type="submit" value='create product'></td>
 			</tr>
 
 
@@ -78,22 +111,22 @@
 	<div>
 		<table border="5" bgcolor="cyan">
 			<tr>
-				<td>Products ID</td>
-				<td>Products Name</td>
-				<td>Products Description</td>
+				<td>Product ID</td>
+				<td>Product Name</td>
+				<td>Product Description</td>
 				<td>Action</td>
 			</tr>
 
 
-			<c:forEach var="products" items="${products}">
+			<c:forEach var="product" items="${products}">
 				<tr>
-					<td>${products.id}</td>
-					<td>${products.name}</td>
-					<td>${products.description}</td>
+					<td>${product.id}</td>
+					<td>${product.name}</td>
+					<td>${product.description}</td>
 
-					<td><a href="products/delete/?id=${products.id}">Delete</a></td>
+					<td><a href="product/delete/?id=${product.id}">Delete</a></td>
 
-					<td><a href="products/edit/?id=${products.id}">Edit</a></td>
+					<td><a href="product/edit/?id=${product.id}">Edit</a></td>
 
 
 

@@ -17,19 +17,19 @@
 			<tr>
 				<td>ID</td>
 
-				<td><input type="text" name='id' ></td>
+				<td><input type="text" name='id'  value= "${selectedCategory.id}" ></td>
 
 			</tr>
 
 			<td>Name</td>
 
-			<td><input type="text" name='name' ></td>
+			<td><input type="text" name='name'  value= "${selectedCategory.name}"></td>
 
 			</tr>
 
 			<td>Description</td>
 
-			<td><input type="text" name='description'></td>
+			<td><input type="text" name='description'  value= "${selectedCategory.description}"></td>
 
 			<tr>
 				<td><input type="submit" value='create category'></td>

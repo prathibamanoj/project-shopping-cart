@@ -21,13 +21,13 @@ public class AdminController {
 	@Autowired
 	private CategoryDAO categoryDAO;
 	
+	@Autowired
+	private SupplierDAO supplierDAO;
 	
-    @Autowired
-    private SupplierDAO supplierDAO;
-    
-    @Autowired
-    private ProductDAO productDAO;
-    
+	@Autowired
+	private ProductDAO productDAO;
+	
+	
 	@Autowired
 	private Category category;
 	
@@ -37,6 +37,10 @@ public class AdminController {
 	@Autowired
 	private Product product;
 	
+	
+	
+	
+
 	@Autowired HttpSession httpSession;
 	
 	@GetMapping("/managecategories")
@@ -52,14 +56,15 @@ public class AdminController {
 		return mv;
 	}
 	
-	@GetMapping("/managesupplier")
+	@GetMapping("/managesuppliers")
 	public ModelAndView admincClickedSupplier()
 	{
 		ModelAndView mv = new ModelAndView("home");
 		mv.addObject("isAdminClickedManageSuppliers", true);
 		
-		List<Supplier> suppliers = supplierDAO.list();
+		List<Supplier> suppliers =  supplierDAO.list();
 		httpSession.setAttribute("suppliers", suppliers);
+		
 		return mv;
 	}
 	
@@ -68,14 +73,15 @@ public class AdminController {
 	{
 		ModelAndView mv = new ModelAndView("home");
 		mv.addObject("isAdminClickedManageProducts", true);
-		
-		List<Category> categories = categoryDAO.list();
-		List<Supplier> suppliers = supplierDAO.list();
-		List<Product> products = productDAO.list();
-		
-		httpSession.setAttribute("categories", categories);
-		httpSession.setAttribute("suppliers", suppliers);
-		httpSession.setAttribute("products", products);
+		//we suppsed to fetch all categories and suppliers
+		//and set it to http sesion.
+		 List<Category> categories = categoryDAO.list();
+		 List<Supplier> suppliers = supplierDAO.list();
+		 List<Product> products = productDAO.list();
+		 
+		 httpSession.setAttribute("categories", categories);
+		 httpSession.setAttribute("suppliers", suppliers);
+		 httpSession.setAttribute("products", products);
 		return mv;
 	}
 
