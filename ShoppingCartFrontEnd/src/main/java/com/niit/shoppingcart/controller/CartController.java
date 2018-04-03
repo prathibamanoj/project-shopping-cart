@@ -23,7 +23,7 @@ public class CartController {
 	@Autowired  private Cart cart;
 	@Autowired private HttpSession httpSession;
 	
-	@PostMapping("product/cart/add")
+	@PostMapping("/product/cart/add")
 	public ModelAndView addToCart(@RequestParam String productName,
 			@RequestParam int price, @RequestParam String quantity)
 	
@@ -72,7 +72,13 @@ public class CartController {
 	}
 	
 	
-	
+	@GetMapping("/mycart")
+	public ModelAndView myCart()
+	{
+		ModelAndView mv = new ModelAndView("home");
+		mv.addObject("isUserClickedMyCart", true);
+		return mv;
+	}
 	
 	
 	
