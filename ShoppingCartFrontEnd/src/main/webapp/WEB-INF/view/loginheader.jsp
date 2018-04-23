@@ -19,10 +19,13 @@
     <ul class="nav navbar-nav navbar-left">
       <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       <c:if test="${isLoggedIn==true}">
-       <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
        </c:if>
+       <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+       <c:if test="${isLoggedIn}">
+       </c:if>
+      
     </ul>
-    
+     
      <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <c:if test="${isLoggedIn==true}">

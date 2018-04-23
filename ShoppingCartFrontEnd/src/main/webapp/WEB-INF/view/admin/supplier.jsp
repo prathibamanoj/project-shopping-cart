@@ -52,7 +52,7 @@
 			</tr>
 
 
-			<c:forEach var="supplier" items="${categories}">
+			<c:forEach var="supplier" items="${suppliers}">
 				<tr>
 					<td>${supplier.id}</td>
 					<td>${supplier.name}</td>

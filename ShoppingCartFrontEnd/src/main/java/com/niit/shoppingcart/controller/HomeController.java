@@ -11,17 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
-import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.domain.Category;
 import com.niit.shoppingcart.domain.Product;
-import com.niit.shoppingcart.domain.Supplier;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	@Autowired
 	private Category category;
 	
@@ -44,8 +42,7 @@ public class HomeController {
 		return mv;
 
 	}
-	
-	
+
 	@GetMapping("/login")
 	public ModelAndView login() {
 
@@ -59,10 +56,16 @@ public class HomeController {
 	public ModelAndView logout()
 	{
 		//at the time of login, we add user id in http session
-		//at the time of logout, we need to remove user id from http session.
+		//at the time of logout, we need to remove usre id from http session.
 		ModelAndView mv = new ModelAndView("home");
 		
+		//we were not able to see menu items after logout
+		//will modify this code.
 		httpSession.invalidate();
+		
+		/*httpSession.removeAttribute("loggedInUserID");
+		httpSession.removeAttribute("isLoggedIn");
+		httpSession.removeAttribute("isAdmin");*/
 		
 		mv.addObject("logoutMessage", "You are successfully logged out");
 		return mv;
